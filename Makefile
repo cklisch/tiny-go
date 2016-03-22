@@ -1,4 +1,4 @@
-CC = gc
+CC = gcc
 CC_FLAGS = -Wall -Wextra
 
 # temporary directories

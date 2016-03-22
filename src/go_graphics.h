@@ -4,6 +4,6 @@
 #include "go_basics.h"
 
 
-int print_go(state_t);
+int print_go(state_t*);
 
 #endif
