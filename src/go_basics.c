@@ -87,7 +87,6 @@ int recursice_remove(state_t* s, uint x, uint y, tyle** helper, int* score, tyle
       }
       else if (board[_x][_y] == color && helper[_x][_y] == 0) {
         helper[_x][_y] = 1;
-        board[_x][_y] = 0;
         (*score) += 1;
         if (!recursice_remove(s, _x, _y, helper, score, color)) {
           printf("rec error\n");
@@ -116,12 +115,50 @@ int remove_group(state_t* s, uint x, uint y)
   tyle** helper = malloc_board(size);
   int score = 0;
   if (!recursice_remove(s, x, y, helper, &score, color)) {
+    free_board(helper, size);
     return 0;
   }
+  for (uint i = 0; i < size; i++) {
+    for (uint j = 0; j < size; j++) {
+      if (helper[i][j] == 1) {
+        s->board[i][j] = 0;
+      }
+    }
+  }
+  free_board(helper, size);
   if (color == 2) {
     return score * (-1);
   }
   else {
     return score;
   }
+}
+
+/* Removes stones after a valid move if any are to be removed a.i. have no liberties.
+** If player 1's stones are removed returns poistive. For player 2 negative  number of
+** removed stones.
+*/
+int auto_remove(state_t* s, uint x, uint y)
+{
+  uint size = s->size;
+  int color = s->board[x][y];
+  printf("%d\n",(color % 2) + 1 );
+  int score = 0;
+  uint _x, _y;
+  for (int i = -1; i < 2; i++) {
+    for (int j = -1; j < 2; j++) {
+      _x = x + i; _y = y + j;
+      if (_x >= size || _y >= size) {
+      }
+      else if (abs(i) + abs(j) == 1 && s->board[_x][_y] == (color % 2) + 1) {
+        printf("%u %u\n",_x, _y );
+        score += remove_group(s, _x, _y);
+      }
+      else {
+        printf("%u %u\n", _x, _y );
+      }
+    }
+  }
+  score += remove_group(s, x, y);
+  return score;
 }

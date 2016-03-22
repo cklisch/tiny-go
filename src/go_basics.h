@@ -16,6 +16,6 @@ int place_stone(state_t*, uint, uint);
 int remove_group(state_t*, uint, uint);
 void end_round(state_t*);
 void end_game(state_t*);
-// int auto_remove(state_t* s, uint x, uint y);
+int auto_remove(state_t* s, uint x, uint y);
 
 #endif

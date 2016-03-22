@@ -47,22 +47,21 @@
    state_t* game = init_game(5);
    int matrix[5][5] = {
      {2,2,1,0,0},
-     {2,2,1,0,0},
-     {1,2,2,1,1},
-     {2,2,1,0,0},
-     {1,2,2,1,0}
+     {2,1,0,0,0},
+     {2,1,0,0,0},
+     {1,0,0,0,0},
+     {0,0,0,0,0}
    };
    for (int i = 0; i < 5; i++) {
      for (int j = 0; j < 5; j++) {
        game->board[i][j] = matrix[i][j];
      }
    }
-   int removed = remove_group(game, 2, 2);
-   if (removed == -10) {
+   int removed = auto_remove(game, 0, 2);
+   if (removed == -4) {
      return 1;
    }
    return 0;
-
  }
 
  int test()
