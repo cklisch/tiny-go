@@ -82,14 +82,12 @@ int recursice_remove(state_t* s, uint x, uint y, tyle** helper, int* score, tyle
       if (_x >= size || _y >= size || ((i == j || i == (-j)) && (i != 0 && j != 0))) {
       }
       else if (board[_x][_y] == 0 && helper[_x][_y] == 0) {
-        printf("freedom at %d %d\n", _x, _y);
         return 0;
       }
       else if (board[_x][_y] == color && helper[_x][_y] == 0) {
         helper[_x][_y] = 1;
         (*score) += 1;
         if (!recursice_remove(s, _x, _y, helper, score, color)) {
-          printf("rec error\n");
           return 0;
         }
       }
@@ -142,7 +140,6 @@ int auto_remove(state_t* s, uint x, uint y)
 {
   uint size = s->size;
   int color = s->board[x][y];
-  printf("%d\n",(color % 2) + 1 );
   int score = 0;
   uint _x, _y;
   for (int i = -1; i < 2; i++) {
@@ -151,11 +148,7 @@ int auto_remove(state_t* s, uint x, uint y)
       if (_x >= size || _y >= size) {
       }
       else if (abs(i) + abs(j) == 1 && s->board[_x][_y] == (color % 2) + 1) {
-        printf("%u %u\n",_x, _y );
         score += remove_group(s, _x, _y);
-      }
-      else {
-        printf("%u %u\n", _x, _y );
       }
     }
   }

@@ -24,7 +24,7 @@ int main(int argc, char *argv[])
       printf("Invalid move! Player #%d looses!\n", player);
       return 0;
     }
-    score += auto_remove(game, x, y);
+    score += auto_remove(game, x, y); // hier wird der score aktualisiert
     print_go(game);
     printf("current score %d, moves to go %d\n", score, game->till_end);
   }
