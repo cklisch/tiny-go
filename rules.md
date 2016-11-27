@@ -2,11 +2,11 @@
 
 ## Requirements
 - 2 Players
-- 1 Board with a square grid with sides of n fields $n < 1$ and n odd
+- 1 Board with a square grid with sides of n fields $n < 1$
 - 2 sets of stones, each containing $n^2 / 2$ rounded down to the next integer distinguishable stones
 
 ## Game
-A game consists of two rounds. Each players picks a set of stones. Both players start one round.
+A game consists of two rounds. Each player picks a set of stones. Each player start a round.
 
 ### Round
 The players take alternating turns as long as they have stones left.
@@ -19,4 +19,4 @@ The players take alternating turns as long as they have stones left.
 All stones which were removed during the two rounds are added up. The player who removed more of the opponents stones wins. If both captured the same amount it is a draw.
 
 [^1]: A group of stones is a single stone or all stones recursively adjacent to stones of the same set.
-[^2]: A group with no liberties has no free fields adjacent to it.
+[^2]: A liberty is a free free field adjacent to a group.
